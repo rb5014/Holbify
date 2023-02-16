@@ -1,10 +1,10 @@
 #include "functions.h"
+#include <cstdlib>
 #include <gtkmm.h>
 #include <gstreamermm.h>
-#include <cstdlib>
-#include <iostream>
 #include <glibmm/ustring.h>
 #include <glibmm/refptr.h>
+#include <iostream>
 
 
 int main(int argc, char *argv[])
