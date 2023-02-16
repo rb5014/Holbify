@@ -110,7 +110,7 @@ bool update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 
     return true;
 }
-/*
+
 void update_song_info_label(Gtk::Label& songInfoLabel, Glib::RefPtr<Gst::PlayBin> playbin)
 {
     Gst::TagList tags = playbin->get_tags();
@@ -122,7 +122,7 @@ void update_song_info_label(Gtk::Label& songInfoLabel, Glib::RefPtr<Gst::PlayBin
         songInfoLabel.set_text(songInfo);
     }
 }
-*/
+
 
 void update_length_label(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
 
