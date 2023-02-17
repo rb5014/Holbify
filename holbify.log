@@ -1,276 +1,285 @@
 
-(holbify:23918): Gtk-WARNING **: 16:06:03.119: Content added to the action area of a dialog using header bars
+(holbify:17538): Gtk-WARNING **: 02:52:17.053: Content added to the action area of a dialog using header bars
 
-(holbify:23918): Gtk-WARNING **: 16:06:03.120: Content added to the action area of a dialog using header bars
+(holbify:17538): Gtk-WARNING **: 02:52:17.053: Content added to the action area of a dialog using header bars
 
-(holbify:23918): Gtk-WARNING **: 16:06:03.133: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:17.069: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:03.133: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:17.070: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:03.140: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:17.081: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:03.140: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:17.081: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:14.722: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.362: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:14.738: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.362: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.394: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.378: Error loading theme icon 'media-skip-backward' for stock: 
+
+(holbify:17538): Gtk-WARNING **: 02:52:18.378: Error loading theme icon 'media-seek-forward' for stock: 
+
+(holbify:17538): Gtk-WARNING **: 02:52:18.396: Error loading theme icon 'media-skip-backward' for stock: 
+
+(holbify:17538): Gtk-WARNING **: 02:52:18.396: Error loading theme icon 'media-seek-forward' for stock: 
+
+(holbify:17538): Gtk-WARNING **: 02:52:18.410: Error loading theme icon 'media-skip-backward' for stock: 
+
+(holbify:17538): Gtk-WARNING **: 02:52:18.411: Error loading theme icon 'media-seek-forward' for stock: 
+
+(holbify:17538): Gtk-WARNING **: 02:52:18.426: Error loading theme icon 'media-skip-backward' for stock: 
+
+(holbify:17538): Gtk-WARNING **: 02:52:18.427: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.394: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.442: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.410: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.443: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.410: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.458: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.426: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.459: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.426: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.475: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.443: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.475: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.443: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.491: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.459: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.491: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.459: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.507: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.475: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.507: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.475: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.523: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.491: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:18.523: Error loading theme icon 'media-seek-forward' for stock: 
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type stream-status
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type stream-status
+Received message of type state-changed
+Received message of type stream-status
+Received message of type state-changed
+Received message of type stream-status
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.491: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.612: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.507: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.612: Error loading theme icon 'media-seek-forward' for stock: 
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type stream-status
+Received message of type state-changed
+Received message of type stream-status
+Received message of type stream-start
+Received message of type latency
+Received message of type stream-status
+Received message of type tag
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type async-done
+Received message of type new-clock
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
+Received message of type state-changed
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.508: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.626: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.524: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.627: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.524: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.643: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.540: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.643: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.540: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.659: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.556: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.659: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.557: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.675: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.573: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.675: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.573: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.691: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.589: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.692: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:16.589: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.708: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.898: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.708: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.898: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.724: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.914: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.724: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.914: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.740: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.930: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.740: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.930: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.757: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.946: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.757: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.946: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.773: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.962: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.773: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.962: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.789: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.978: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.789: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.979: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.805: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.995: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.805: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:17.995: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.821: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.011: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:20.821: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.011: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.106: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.027: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.107: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.027: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.122: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.044: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.123: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.044: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.138: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.059: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.139: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.060: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.154: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.076: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.154: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.076: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.170: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.092: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.170: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.092: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.187: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.108: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.187: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.108: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.203: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:18.886: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.203: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:20.040: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.220: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:20.186: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.220: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:20.283: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.235: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:24.765: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.235: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:24.862: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.252: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:29.104: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.252: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:29.217: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.268: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:29.528: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.268: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:29.577: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.284: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:29.993: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.284: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:30.058: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.300: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:31.262: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:23.300: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:31.375: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.805: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:34.114: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.805: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:34.227: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.813: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:36.008: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.813: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:36.117: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.829: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:37.297: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.829: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:37.378: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.845: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.692: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.845: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.692: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.861: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.725: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.861: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.725: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.877: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.741: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.877: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.741: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.894: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.757: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.894: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.757: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.910: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.773: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.910: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.774: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.926: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.790: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.926: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.790: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.943: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.806: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.943: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.806: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.959: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.822: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.959: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.822: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.975: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.838: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.975: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.838: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.991: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.855: Error loading theme icon 'media-skip-backward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:30.992: Error loading theme icon 'media-seek-forward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.855: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:31.008: Error loading theme icon 'media-skip-backward' for stock: 
 
-(holbify:23918): Gtk-WARNING **: 16:06:39.871: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:39.871: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:39.887: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:39.887: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:39.904: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:39.904: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.635: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.635: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.650: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.650: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.666: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.666: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.682: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.683: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.699: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.699: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.715: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.715: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.732: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.732: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.748: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.748: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.764: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.764: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.780: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.780: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.796: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.797: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.813: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.813: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.829: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.829: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.846: Error loading theme icon 'media-skip-backward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:41.846: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:49.136: Error loading theme icon 'media-seek-forward' for stock: 
-
-(holbify:23918): Gtk-WARNING **: 16:06:49.152: Error loading theme icon 'media-seek-forward' for stock: 
+(holbify:17538): Gtk-WARNING **: 02:52:31.008: Error loading theme icon 'media-seek-forward' for stock: 

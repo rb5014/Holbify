@@ -2,9 +2,12 @@
 #include <cstdlib>
 #include <gtkmm.h>
 #include <gstreamermm.h>
+#include <gst/gst.h>
+#include <gst/tag/tag.h>
 #include <glibmm/ustring.h>
 #include <glibmm/refptr.h>
 #include <iostream>
+#include <memory>
 
 bool is_function_updating = false;
 
@@ -18,6 +21,7 @@ Glib::RefPtr<Gtk::Application> create_application(int argc, char *argv[]) {
     return Gtk::Application::create(argc, argv, "com.example.Holbify");
 }
 
+
 void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, const Glib::RefPtr<Gtk::Application>& app) {
     w.quitMenuItem->signal_activate().connect([&] {app->quit(); });
 
@@ -29,6 +33,12 @@ void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, cons
 
     w.volumeButton->signal_value_changed().connect(sigc::bind(sigc::ptr_fun(&on_volume_value_changed), playbin));
 
+    w.scaleBar->signal_value_changed().connect(sigc::bind(sigc::ptr_fun(&on_scaleBar_value_changed), playbin, std::ref(w)));
+
+    Glib::RefPtr<Gst::Bus> bus = playbin->get_bus();
+    bus->add_signal_watch();
+    bus->signal_message().connect(sigc::bind(sigc::ptr_fun(on_message), std::ref(w)));
+
     Glib::signal_timeout().connect([&]() {
         Gst::State state, pending_state;
         playbin->get_state(state, pending_state, 0);
@@ -38,8 +48,22 @@ void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, cons
         return true;
     }, 100);
 
-    w.scaleBar->signal_value_changed().connect(sigc::bind(sigc::ptr_fun(&on_scaleBar_value_changed), playbin, std::ref(w)));
+}
 
+void on_message(Glib::RefPtr<Gst::Message> message, widgets& w) {
+    auto msgType = static_cast<GstMessageType>(message->get_message_type());
+    g_print("Received message of type %s\n", gst_message_type_get_name(msgType));
+    if (message->get_message_type() == Gst::MESSAGE_TAG) {
+        auto tag_message = Glib::RefPtr<Gst::MessageTag>::cast_static(message);
+        if (tag_message) {
+            Gst::TagList tag_list = tag_message->parse_tag_list();
+            gchar *title;
+            if(gst_tag_list_get_string(tag_list.gobj(), GST_TAG_TITLE, &title)) {
+                g_print("%s", title);
+                w.songInfoLabel->set_label(title);
+            }
+        }
+    }
 }
 
 void on_scaleBar_value_changed(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
@@ -93,7 +117,7 @@ bool update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
     gint64 len = get_song_length(playbin);
 
     update_length_label(playbin, std::ref(w));
-
+    //update_song_info_label(playbin, std::ref(w));
     // Update the value of the scale bar
     is_function_updating = true;
     w.scaleBar->set_value(pos / GST_SECOND);
@@ -111,17 +135,31 @@ bool update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
     return true;
 }
 
-void update_song_info_label(Gtk::Label& songInfoLabel, Glib::RefPtr<Gst::PlayBin> playbin)
-{
-    Gst::TagList tags = playbin->get_tags();
-    if (tags) {
-        Glib::ustring artist, title;
-        tags->get_string(Gst::Tag::Artist, artist);
-        tags->get_string(Gst::Tag::Title, title);
-        Glib::ustring songInfo = artist + " - " + title;
-        songInfoLabel.set_text(songInfo);
+/*void update_song_info_label(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
+    Gst::TagList* tagList;
+    playbin->get_property("tags", tagList);
+
+    if (!tagList)
+        return;
+
+    gchar* title;
+    if (gst_tag_list_get_string(tagList->gobj(), GST_TAG_TITLE, &title)) {
+        w.songInfoLabel->set_text(title);
+        g_free(title);
     }
+
+    gchar* artist;
+    if (gst_tag_list_get_string(tagList, GST_TAG_ARTIST, &artist)) {
+        label.set_text(label.get_text() + " - " + artist);
+        g_free(artist);
+    }
+    
+
+    gst_tag_list_unref(tagList->gobj());
 }
+*/
+
+
 
 
 void update_length_label(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
@@ -204,6 +242,7 @@ void on_stop_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
     // Set the state of the playbin to ready
     is_function_updating = true;
+    playbin->set_state(Gst::State::STATE_NULL);
     playbin->set_state(Gst::State::STATE_READY);
     playbin->set_state(Gst::State::STATE_PAUSED);
     // Reset the value of the scale bar to 0
@@ -213,7 +252,8 @@ void on_stop_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
     // Update the two time labels with the new value
     w.positionLabel->set_label("--:--");
     w.lengthLabel->set_label("--:--");
-}
+    w.songInfoLabel->set_label("");
+}   
 
 
 
