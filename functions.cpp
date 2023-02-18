@@ -8,8 +8,11 @@
 #include <glibmm/refptr.h>
 #include <iostream>
 #include <memory>
+#include <deque>
 
 bool is_function_updating = false;
+bool is_song_playing = false;
+std::deque <Glib::ustring> playedSongs;
 
 Glib::RefPtr<Gst::PlayBin> create_playbin() {
     Gst::init();
@@ -29,6 +32,10 @@ void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, cons
 
     w.playPauseButton->signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_play_pause_button_clicked), playbin, std::ref(w)));
 
+    w.previousButton->signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_previous_button_clicked), playbin, std::ref(w)));
+
+    w.forwardButton->signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_forward_button_clicked), playbin, std::ref(w)));
+
     w.stopButton->signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_stop_button_clicked), playbin, std::ref(w)));
 
     w.volumeButton->signal_value_changed().connect(sigc::bind(sigc::ptr_fun(&on_volume_value_changed), playbin));
@@ -37,7 +44,7 @@ void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, cons
 
     Glib::RefPtr<Gst::Bus> bus = playbin->get_bus();
     bus->add_signal_watch();
-    bus->signal_message().connect(sigc::bind(sigc::ptr_fun(on_message), std::ref(w)));
+    bus->signal_message().connect(sigc::bind(sigc::ptr_fun(on_message), playbin, std::ref(w)));
 
     Glib::signal_timeout().connect([&]() {
         Gst::State state, pending_state;
@@ -50,19 +57,28 @@ void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, cons
 
 }
 
-void on_message(Glib::RefPtr<Gst::Message> message, widgets& w) {
+void on_message(Glib::RefPtr<Gst::Message> message, Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     auto msgType = static_cast<GstMessageType>(message->get_message_type());
-    g_print("Received message of type %s\n", gst_message_type_get_name(msgType));
+    //g_print("Received message of type %s\n", gst_message_type_get_name(msgType));
     if (message->get_message_type() == Gst::MESSAGE_TAG) {
         auto tag_message = Glib::RefPtr<Gst::MessageTag>::cast_static(message);
         if (tag_message) {
             Gst::TagList tag_list = tag_message->parse_tag_list();
             gchar *title;
             if(gst_tag_list_get_string(tag_list.gobj(), GST_TAG_TITLE, &title)) {
-                g_print("%s", title);
                 w.songInfoLabel->set_label(title);
             }
         }
+    } else if (message->get_message_type() == Gst::MESSAGE_STATE_CHANGED) {
+        GstState newState;
+        gst_message_parse_state_changed(message->gobj(), nullptr, &newState, nullptr);
+        if (newState == GST_STATE_PLAYING) {
+            is_song_playing = true;
+            gint64 len = get_song_length(playbin);
+            // Set the range of the scale bar to the length of the song
+            update_length_label(playbin, std::ref(w));
+            w.scaleBar->set_range(0, len / GST_SECOND);
+        }     
     }
 }
 
@@ -83,48 +99,16 @@ void on_scaleBar_value_changed(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
     w.scaleBar->set_tooltip_text(Glib::ustring::compose("%1:%2", pos_min, pos_sec));
 }
 
-// Get the current position of the song in time format
-gint64 get_current_position(Glib::RefPtr<Gst::PlayBin> playbin)
-{
-    gint64 pos;
-    Gst::Format format = Gst::FORMAT_TIME;
-    playbin->query_position(format, pos);
-    return pos;
-}
-
-// Get the length of the song in time format
-gint64 get_song_length(Glib::RefPtr<Gst::PlayBin> playbin)
-{
-    gint64 len;
-    Gst::Format format = Gst::FORMAT_TIME;
-    playbin->query_duration(format, len);
-    return len;
-}
-
-// Convert time in nanoseconds to minutes and seconds
-std::string convert_time(gint64 time_ns)
-{
-    int time_sec = time_ns / GST_SECOND;
-    int min = time_sec / 60;
-    int sec = time_sec % 60;
-    std::string time_str = std::to_string(min) + ":" + (sec < 10 ? "0" : "") + std::to_string(sec);
-    return time_str;
-}
-
 bool update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
     gint64 pos = get_current_position(playbin);
-    gint64 len = get_song_length(playbin);
 
-    update_length_label(playbin, std::ref(w));
     //update_song_info_label(playbin, std::ref(w));
     // Update the value of the scale bar
     is_function_updating = true;
     w.scaleBar->set_value(pos / GST_SECOND);
     is_function_updating = false;
 
-    // Set the range of the scale bar to the length of the song
-    w.scaleBar->set_range(0, len / GST_SECOND);
 
     // Format the position and length as minutes and seconds
     std::string pos_str = convert_time(pos);
@@ -169,15 +153,16 @@ void update_length_label(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     w.lengthLabel->set_label(len_str);
 }
 
+/*
 void start_song(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
-    playbin->set_state(Gst::State::STATE_PAUSED);
     playbin->set_state(Gst::State::STATE_PLAYING);
-    update_length_label(playbin, std::ref(w));
 }
+*/
 
 void file_opener(Glib::ustring filename, Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
+    playbin->set_state(Gst::State::STATE_NULL);
     playbin->property_uri() = Glib::filename_to_uri(filename);
-    start_song(playbin, std::ref(w));
+    playbin->set_state(Gst::State::STATE_PLAYING);
 }
 
 void file_chooser(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w) {
@@ -193,9 +178,9 @@ void file_chooser(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w) {
 
     // Handle the result of the file chooser dialog
     if (result == Gtk::RESPONSE_OK) {
-        playbin->set_state(Gst::State::STATE_NULL);
         Glib::ustring filename = w.fileChooserDialog->get_filename();
         file_opener(filename, playbin, std::ref(w));
+        playedSongs.push_back(filename);
     }
     if (result == Gtk::RESPONSE_CANCEL) {
         w.fileChooserDialog->hide();
@@ -211,6 +196,8 @@ widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder)
     builder->get_widget("fileChooserDialog", w.fileChooserDialog);
     builder->get_widget("quitMenuItem", w.quitMenuItem);
     builder->get_widget("playPauseButton", w.playPauseButton);
+    builder->get_widget("previousButton", w.previousButton);
+    builder->get_widget("forwardButton", w.forwardButton);
     builder->get_widget("stopButton", w.stopButton);
     builder->get_widget("openFile", w.openFile);
     builder->get_widget("cancelOpen", w.cancelOpen);
@@ -222,6 +209,38 @@ widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder)
     return w;
 }
 
+void on_previous_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
+    g_print("IN IIIIIIT");
+    // If the deque has at least two songs, remove the current song and get the previous song
+    if (playedSongs.size() > 1) {
+        std::string currentSong = playedSongs.back();
+        playedSongs.pop_back();
+        playedSongs.push_front(currentSong);
+        std::string previousSong = playedSongs.back();
+
+        // Set the state of the playbin to null, update the URI to the previous song, and start playing
+        file_opener(previousSong, playbin, std::ref(w));
+    }
+    else {
+        // If the deque only has one song, just replay the current song
+        playbin->set_state(Gst::State::STATE_NULL);
+        playbin->set_state(Gst::State::STATE_PLAYING);
+    }
+}
+
+void on_forward_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
+    if (!playedSongs.empty()) {
+        // Get the next song in the deque
+        std::string nextSong = playedSongs.front();
+        if (playedSongs.size() > 1) {
+            playedSongs.pop_front();
+        }
+
+        // Stop the current song and play the next one
+        file_opener(nextSong, playbin, std::ref(w));
+    }
+}
+
 void on_play_pause_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
     Gst::State current, pending;
@@ -230,7 +249,7 @@ void on_play_pause_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w
         playbin->set_state(Gst::State::STATE_PAUSED);
     }
     else if (current == Gst::State::STATE_PAUSED) {
-        start_song(playbin, std::ref(w));
+        playbin->set_state(Gst::State::STATE_PLAYING);
     }
     else {
         file_chooser(playbin, std::ref(w));

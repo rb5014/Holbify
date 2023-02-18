@@ -8,7 +8,6 @@
 #include <glibmm/refptr.h>
 #include <iostream>
 
-
 int main(int argc, char *argv[])
 {
     // Create the app

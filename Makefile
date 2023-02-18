@@ -4,7 +4,7 @@ compile:
 
 run: 
 	rm -f holbify
-	g++ -g -Wall -o holbify main.cpp functions.cpp -I/usr/include/gstreamer-1.0 `pkg-config --cflags --libs gtkmm-3.0 gstreamermm-1.0` -I/usr/include/glibmm-2.4 -lgsttag-1.0
+	g++ -g -Wall -o holbify main.cpp functions.cpp tools.cpp -I/usr/include/gstreamer-1.0 `pkg-config --cflags --libs gtkmm-3.0 gstreamermm-1.0` -I/usr/include/glibmm-2.4 -lgsttag-1.0
 	./holbify 2<&1 | tee ./holbify.log
 
 test-GUI: 
