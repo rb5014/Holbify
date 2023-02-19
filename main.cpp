@@ -19,10 +19,12 @@ int main(int argc, char *argv[])
     // Load the Glade XML file
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create_from_file("GUI.glade");
 
-    // Load the widgets from the Glade XML file
+    // Load the widgets and their icons from the Glade XML file
     widgets w = load_widgets(builder);
-
+    load_icons(w);
+    
+    // Connect the signals from the widgets to the dedicated functions
     connect_signals(w, playbin, app);
 
-    return app->run(*w.window);
+    return app->run(*w.mainWindow);
 }

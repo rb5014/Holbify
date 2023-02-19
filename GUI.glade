@@ -2,6 +2,7 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <!-- interface-local-resource-path /home/rb5014/Holbify/icons -->
   <object class="GtkFileChooserDialog" id="fileChooserDialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
@@ -55,6 +56,8 @@
   </object>
   <object class="GtkWindow" id="mainWindow">
     <property name="can_focus">False</property>
+    <property name="halign">start</property>
+    <property name="title" translatable="yes">Music Player Holbify</property>
     <child type="titlebar">
       <placeholder/>
     </child>
@@ -102,37 +105,6 @@
                 </child>
               </object>
             </child>
-            <child>
-              <object class="GtkMenuItem">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_View</property>
-                <property name="use_underline">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Help</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkImageMenuItem">
-                        <property name="label">gtk-about</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -142,7 +114,6 @@
         </child>
         <child>
           <object class="GtkButton" id="playPauseButton">
-            <property name="label">gtk-media-play</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -150,8 +121,10 @@
             <property name="margin_right">20</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
-            <property name="use_stock">True</property>
             <property name="always_show_image">True</property>
+            <child>
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -160,7 +133,6 @@
         </child>
         <child>
           <object class="GtkButton" id="stopButton">
-            <property name="label">gtk-media-stop</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -168,8 +140,10 @@
             <property name="margin_right">20</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
-            <property name="use_stock">True</property>
             <property name="always_show_image">True</property>
+            <child>
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="left_attach">2</property>
@@ -240,18 +214,6 @@ audio-volume-medium-symbolic</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="songInfoLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">6</property>
-            <property name="width">4</property>
-            <property name="height">2</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkLabel" id="lengthLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -264,14 +226,15 @@ audio-volume-medium-symbolic</property>
         </child>
         <child>
           <object class="GtkButton" id="forwardButton">
-            <property name="label">gtk-media-forward</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
-            <property name="use_stock">True</property>
             <property name="always_show_image">True</property>
+            <child>
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="left_attach">4</property>
@@ -281,19 +244,23 @@ audio-volume-medium-symbolic</property>
         </child>
         <child>
           <object class="GtkButton" id="previousButton">
-            <property name="label">gtk-media-previous</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
-            <property name="use_stock">True</property>
             <property name="always_show_image">True</property>
+            <child>
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">9</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
         <child>
           <placeholder/>

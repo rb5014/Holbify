@@ -16,7 +16,7 @@ Glib::RefPtr<Gst::PlayBin> create_playbin();
 Glib::RefPtr<Gtk::Application> create_application(int argc, char *argv[]);
 
 struct widgets {
-    Gtk::Window* window;
+    Gtk::Window* mainWindow;
     Gtk::MenuItem* openMenuItem;
     Gtk::FileChooserDialog* fileChooserDialog;
     Gtk::MenuItem* quitMenuItem;
@@ -33,7 +33,7 @@ struct widgets {
     Gtk::Label* songInfoLabel;
 };
 widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder);
-
+void load_icons(widgets& w);
 void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, const Glib::RefPtr<Gtk::Application>& app);
 void file_opener(Glib::ustring filename, Glib::RefPtr<Gst::PlayBin> playbin, widgets &w);
 void file_chooser(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w);
