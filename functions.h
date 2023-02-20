@@ -30,7 +30,6 @@ struct widgets {
     Gtk::Scale* scaleBar;
     Gtk::Label* positionLabel;
     Gtk::Label* lengthLabel;
-    Gtk::Label* songInfoLabel;
 };
 widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder);
 void load_icons(widgets& w);

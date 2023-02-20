@@ -90,11 +90,6 @@ void update_length_label(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     w.lengthLabel->set_label(len_str);
 }
 
-/*
-void start_song(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
-    playbin->set_state(Gst::State::STATE_PLAYING);
-}
-*/
 
 void file_opener(Glib::ustring filename, Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     playbin->set_state(Gst::State::STATE_NULL);
@@ -203,6 +198,9 @@ void on_play_pause_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w
 // Stops the currently playing song, resets the scale bar and time label to their initial values
 void on_stop_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
+    auto play_icon = Gtk::manage(new Gtk::Image("icons/play.png"));
+    w.playPauseButton->set_image(*play_icon);
+    w.playPauseButton->set_tooltip_text("Play");
     // Set the state of the playbin to ready
     is_function_updating = true;
     playbin->set_state(Gst::State::STATE_READY);
@@ -211,33 +209,7 @@ void on_stop_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
     is_function_updating = false;
 }   
 
-
-
 void on_volume_value_changed(double value, Glib::RefPtr<Gst::PlayBin> playbin) {
     playbin->property_volume() = value;
 }
-
-/*void update_song_info_label(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
-    Gst::TagList* tagList;
-    playbin->get_property("tags", tagList);
-
-    if (!tagList)
-        return;
-
-    gchar* title;
-    if (gst_tag_list_get_string(tagList->gobj(), GST_TAG_TITLE, &title)) {
-        w.songInfoLabel->set_text(title);
-        g_free(title);
-    }
-
-    gchar* artist;
-    if (gst_tag_list_get_string(tagList, GST_TAG_ARTIST, &artist)) {
-        label.set_text(label.get_text() + " - " + artist);
-        g_free(artist);
-    }
-    
-
-    gst_tag_list_unref(tagList->gobj());
-}
-*/
 

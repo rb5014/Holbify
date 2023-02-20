@@ -1,10 +1,4 @@
 
-(holbify:5389): Gtk-WARNING **: 20:01:12.692: Content added to the action area of a dialog using header bars
+(holbify:8241): Gtk-WARNING **: 01:32:18.717: Content added to the action area of a dialog using header bars
 
-(holbify:5389): Gtk-WARNING **: 20:01:12.693: Content added to the action area of a dialog using header bars
-
-(holbify:5389): gtkmm-CRITICAL **: 20:01:12.695: gtkmm: object `songInfoLabel' not found in GtkBuilder file.
-
-(holbify:5389): gtkmm-CRITICAL **: 20:01:12.695: gtkmm: Gtk::Builder: widget `songInfoLabel' was not found in the GtkBuilder file, or the specified part of it.
-
-** (holbify:5389): CRITICAL **: 20:01:12.695: Gtk::Builder::get_widget(): dynamic_cast<> failed.
+(holbify:8241): Gtk-WARNING **: 01:32:18.717: Content added to the action area of a dialog using header bars

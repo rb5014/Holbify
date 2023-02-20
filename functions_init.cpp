@@ -39,7 +39,6 @@ widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder)
     builder->get_widget("scaleBar", w.scaleBar);
     builder->get_widget("positionLabel", w.positionLabel);
     builder->get_widget("lengthLabel", w.lengthLabel);
-    builder->get_widget("songInfoLabel", w.songInfoLabel);
     return w;
 }
 
