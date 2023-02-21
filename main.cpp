@@ -1,12 +1,4 @@
 #include "functions.h"
-#include <cstdlib>
-#include <gtkmm.h>
-#include <gst/gst.h>
-#include <gst/tag/tag.h>
-#include <gstreamermm.h>
-#include <glibmm/ustring.h>
-#include <glibmm/refptr.h>
-#include <iostream>
 
 int main(int argc, char *argv[])
 {
