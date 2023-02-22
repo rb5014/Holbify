@@ -23,6 +23,6 @@ int main(int argc, char *argv[])
     
     // Connect the signals from the widgets to the dedicated functions
     connect_signals(w, playbin, app);
-
+    w.mainWindow->show_all();
     return app->run(*w.mainWindow);
 }

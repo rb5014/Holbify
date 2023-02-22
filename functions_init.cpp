@@ -19,7 +19,7 @@ widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder)
     widgets w;
     builder->get_widget("mainWindow", w.mainWindow);
     w.mainWindow->set_default_size(800, 200);
-
+    w.mainWindow->set_decorated(true);
     builder->get_widget("openMenuItem", w.openMenuItem);
     builder->get_widget("quitMenuItem", w.quitMenuItem);
     builder->get_widget("createPlaylistButton", w.createPlaylistButton);

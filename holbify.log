@@ -1,16 +1,6 @@
 
-(holbify:5765): Gtk-WARNING **: 11:38:14.190: Content added to the action area of a dialog using header bars
+(holbify:10761): Gtk-WARNING **: 14:35:49.921: Content added to the action area of a dialog using header bars
 
-(holbify:5765): Gtk-WARNING **: 11:38:14.190: Content added to the action area of a dialog using header bars
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
-NO ARTWORK!
+(holbify:10761): Gtk-WARNING **: 14:35:49.922: Content added to the action area of a dialog using header bars
+
+(holbify:10761): Gtk-CRITICAL **: 14:36:10.553: gtk_window_set_transient_for: assertion 'window != parent' failed
