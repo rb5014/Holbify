@@ -1,5 +1,11 @@
 #include "functions.h"
 
+bool is_function_updating = false;
+std::deque <Glib::ustring> playedSongs;
+std::vector <std::string> currentPlaylist;
+Glib::ustring currentSong;
+long unsigned int currentSongIndex = 0;
+
 int main(int argc, char *argv[])
 {
     // Create the app

@@ -1,14 +1,7 @@
 #include "functions.h"
 
 
-
-
-bool is_function_updating = false;
-std::deque <Glib::ustring> playedSongs;
-std::vector <std::string> currentPlaylist;
-Glib::ustring currentSong;
-long unsigned int currentSongIndex = 0;
-
+// Interpret messages of the bus
 void on_message(Glib::RefPtr<Gst::Message> message, Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     auto msgType = message->get_message_type();
     //g_print("Received message of type %s\n", gst_message_type_get_name(msgType));
@@ -27,8 +20,7 @@ void on_message(Glib::RefPtr<Gst::Message> message, Glib::RefPtr<Gst::PlayBin> p
             w.playPauseButton->set_image(*pause_icon);
             w.playPauseButton->set_tooltip_text("Pause");
         } 
-    }
-    else if (msgType == Gst::MESSAGE_TAG) {
+    } else if (msgType == Gst::MESSAGE_TAG) {
         auto tag_message = Glib::RefPtr<Gst::MessageTag>::cast_static(message);
         if (tag_message) {
             Gst::TagList tag_list = tag_message->parse_tag_list();
@@ -38,26 +30,23 @@ void on_message(Glib::RefPtr<Gst::Message> message, Glib::RefPtr<Gst::PlayBin> p
             } else {
                 w.mainWindow->set_title(Gio::File::create_for_path(currentSong)->get_basename() + " - Music Player Holbify");
             }
+
+            // Get the cover art tag
+            GstSample *sample;
+            if (gst_tag_list_get_sample(tag_list.gobj(), GST_TAG_IMAGE, &sample)) {
+                g_print("Got the artwork!\n");
+                // use the buffer to display the image
+            } else {
+                g_print("NO ARTWORK!\n");
+            }
+
         }
     } else if (msgType == Gst::MESSAGE_EOS) {
-        // Handle end of stream (EOS) message
-        auto currentSongIter = std::find(currentPlaylist.begin(), currentPlaylist.end(), currentSong);
-        if (currentSongIter != currentPlaylist.end() && currentSongIter != currentPlaylist.end() - 1) {
-            // If there are more songs in the playlist, move on to the next song
-            playbin->set_state(Gst::State::STATE_NULL);
-            currentSong = *(currentSongIter + 1);
-            playbin->set_property("uri", "file://" + currentSong);
-            playbin->set_state(Gst::State::STATE_PLAYING);
-        } else {
-            // If this is the last song in the playlist, stop playback and reset the UI
-            reset_visuals(std::ref(w));
-            w.playPauseButton->set_image(*play_icon);
-            w.playPauseButton->set_tooltip_text("Play");
-            playbin->set_state(Gst::State::STATE_NULL);
-        }
+        on_next_button_clicked(playbin, w);
     }
 }
 
+// Seek to the position in the song when user changes scale value
 void on_scaleBar_value_changed(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
     if (is_function_updating)
@@ -75,7 +64,8 @@ void on_scaleBar_value_changed(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
     w.scaleBar->set_tooltip_text(Glib::ustring::compose("%1:%2", pos_min, pos_sec));
 }
 
-bool update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
+// Update the scale bar every 100 milliseconds
+bool on_timeout_update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
     gint64 pos = get_current_position(playbin);
     gint64 len = get_song_length(playbin);
@@ -98,21 +88,8 @@ bool update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
     return true;
 }
 
-void update_length_label(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
 
-    gint64 len = get_song_length(playbin);
-    std::string len_str = convert_time(len);
-    w.lengthLabel->set_label(len_str);
-}
-
-
-void file_opener(Glib::ustring filename, Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
-    playbin->set_state(Gst::State::STATE_NULL);
-    playbin->property_uri() = Glib::filename_to_uri(filename);
-    playbin->set_state(Gst::State::STATE_PLAYING);
-    currentSong = filename;
-}
-
+// Shows a file chooser dialog to open a file
 void file_chooser(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w) {
 
     add_audio_filter(*w.fileChooserDialog);
@@ -138,6 +115,7 @@ void file_chooser(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w) {
     w.fileChooserDialog->hide();
 }
 
+// Go to previous song or go to the end of the playlist
 void on_previous_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
    
     if (!currentPlaylist.empty()) {
@@ -168,6 +146,7 @@ void on_previous_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) 
 
 }
 
+// Go to next song or come back to beginning of the playlist
 void on_next_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     if (!currentPlaylist.empty()) {
         if (currentSongIndex == currentPlaylist.size() -1) {
@@ -195,6 +174,7 @@ void on_next_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     }
 }
 
+// Start or pause the music or open filechooser if no files loaded yet
 void on_play_pause_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
     Gst::State current, pending;
@@ -217,24 +197,14 @@ void on_stop_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
     playbin->set_state(Gst::State::STATE_READY);
 
-}   
+}
 
+// Set the volume to the new value 
 void on_volume_value_changed(double value, Glib::RefPtr<Gst::PlayBin> playbin) {
     playbin->property_volume() = value;
 }
 
-void reset_visuals(widgets& w) {
-    // Reset the labels and the values
-    w.positionLabel->set_label("--:--");
-    w.lengthLabel->set_label("--:--");
-    w.mainWindow->set_title("Music Player Holbify");
-    // Set boolean to true to prevent on_scaleBar_value_changed to be called
-    is_function_updating = true;
-    // Reset the value of the scale bar to 0
-    w.scaleBar->set_value(0);
-    is_function_updating = false;
-}
-
+// Open a file chooser dialog to create a playlist
 void on_create_playlist_button_clicked() {
     // Create a playlist vector
     std::vector<std::string> playlist;
@@ -308,6 +278,7 @@ void on_create_playlist_button_clicked() {
     }
 }
 
+// Add files to the listbox in the file chooser dialog for the playlist
 void on_add_button_clicked(Gtk::FileChooserDialog& dialog, Gtk::ListBox& listBox, std::vector<std::string>& playlist) {
     auto selectedFiles = dialog.get_filenames();
     for (const auto& file : selectedFiles) {
@@ -332,6 +303,7 @@ void on_add_button_clicked(Gtk::FileChooserDialog& dialog, Gtk::ListBox& listBox
     dialog.show_all();
 }
 
+// Remove files from the listBox when clicked on
 void on_list_box_row_activated(Gtk::FileChooserDialog& dialog, Gtk::ListBox& listBox, Gtk::ListBoxRow& row, std::vector<std::string>& playlist) {
     // Get the selected filename from the row
     auto child = row.get_child();
@@ -344,36 +316,7 @@ void on_list_box_row_activated(Gtk::FileChooserDialog& dialog, Gtk::ListBox& lis
     dialog.show_all();
 }
 
-
-void save_playlist(Gtk::FileChooserDialog& dialog, const std::vector<std::string>& playlist, const std::string& filename) {
-    // Check if the Playlists directory exists, and create it if it doesn't
-    if (!g_file_test("Playlists", G_FILE_TEST_IS_DIR)) {
-        mkdir("Playlists", 0777);
-    }
-
-    // Build the full file path
-    std::string full_path = "Playlists/" + filename;
-
-    // Check if the file already exists, and prompt the user to replace it if it does
-    if (g_file_test(full_path.c_str(), G_FILE_TEST_IS_REGULAR)) {
-        Gtk::MessageDialog dialog(dialog, "File already exists. Replace it?", false, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_YES_NO);
-        int result = dialog.run();
-        if (result == Gtk::RESPONSE_NO) {
-            return;
-        }
-    }
-    // Open the file for writing
-    std::ofstream file(full_path);
-
-    // Write each song path to the file
-    for (const auto& songPath : playlist) {
-        file << songPath << std::endl;
-    }
-
-    // Close the file
-    file.close();
-}
-
+// Open and starts a playlist
 void on_open_playlist_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     // Create the file chooser dialog and set its title
     Gtk::FileChooserDialog dialog(*w.mainWindow, "Open Playlist", Gtk::FILE_CHOOSER_ACTION_OPEN);
@@ -398,28 +341,4 @@ void on_open_playlist_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets
             file_opener(currentPlaylist[0], playbin, w);
         }
     }
-}
-
-std::vector<std::string> load_playlist(const std::string& filename) {
-    // Open the file for reading
-    std::ifstream file(filename);
-
-    // Read each line from the file and add it to the playlist
-    std::vector<std::string> playlist;
-    std::string line;
-    while (std::getline(file, line)) {
-        playlist.push_back(line);
-    }
-    // Close the file and return the playlist
-    file.close();
-    return playlist;
-}
-
-
-// Create a file filter that only allows audio files
-void add_audio_filter(Gtk::FileChooserDialog& dialog) {
-    auto filter = Gtk::FileFilter::create();
-    filter->set_name("Audio Files");
-    filter->add_mime_type("audio/*");
-    dialog.add_filter(filter);
 }

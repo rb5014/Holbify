@@ -1,15 +1,19 @@
 #include "functions.h"
 
+// Create and initiate the playbin
 Glib::RefPtr<Gst::PlayBin> create_playbin() {
     Gst::init();
     return Gst::PlayBin::create("playbin");
 }
 
+// Create and initiate the application
 Glib::RefPtr<Gtk::Application> create_application(int argc, char *argv[]) {
     Glib::init();
     return Gtk::Application::create(argc, argv, "com.example.Holbify");
 }
 
+
+// Load the widgets from the GLADE file
 widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder)
 {
     widgets w;
@@ -30,13 +34,14 @@ widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder)
     builder->get_widget("openFile", w.openFile);
     builder->get_widget("cancelOpen", w.cancelOpen);
     builder->get_widget("volumeButton", w.volumeButton);
+    w.volumeButton->set_value(1.0);
     builder->get_widget("scaleBar", w.scaleBar);
     builder->get_widget("positionLabel", w.positionLabel);
     builder->get_widget("lengthLabel", w.lengthLabel);
     return w;
 }
 
-
+// Load the icons from the icons directory
 void load_icons(widgets& w)
 {
     auto play_icon = Gtk::manage(new Gtk::Image("icons/play.png"));
@@ -61,9 +66,7 @@ void load_icons(widgets& w)
     w.stopButton->set_tooltip_text("Stop");
 }
 
-
-
-
+// Connect the widgets to their respective callback function
 void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, const Glib::RefPtr<Gtk::Application>& app) {
     w.quitMenuItem->signal_activate().connect([&] {app->quit(); });
 
@@ -94,7 +97,7 @@ void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, cons
         Gst::State state, pending_state;
         playbin->get_state(state, pending_state, 0);
         if (state == Gst::State::STATE_PLAYING) {
-            return update_scale_bar(playbin, std::ref(w));
+            return on_timeout_update_scale_bar(playbin, std::ref(w));
         }
         return true;
     }, 100);
