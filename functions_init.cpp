@@ -88,9 +88,11 @@ void connect_signals(widgets& w, const Glib::RefPtr<Gst::PlayBin>& playbin, cons
 
     w.scaleBar->signal_value_changed().connect(sigc::bind(sigc::ptr_fun(&on_scaleBar_value_changed), playbin, std::ref(w)));
 
-
+    // Create the bus pointer
     Glib::RefPtr<Gst::Bus> bus = playbin->get_bus();
+    // Activate the messages sending from the bus
     bus->add_signal_watch();
+    // Connect it to the callback function on_message
     bus->signal_message().connect(sigc::bind(sigc::ptr_fun(on_message), playbin, std::ref(w)));
 
     Glib::signal_timeout().connect([&]() {
