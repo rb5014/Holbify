@@ -1,4 +1,4 @@
-[Introduction](#Holbi Music Player)
+[Introduction](#introduction)
 
 [Features](#features)
 
@@ -6,7 +6,7 @@
 
 # Introduction
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at tincidunt nisl. Praesent vitae dictum lectus. Donec dignissim felis sollicitudin nibh feugiat tincidunt. Phasellus orci urna, pretium nec leo in, ultricies pretium odio. Maecenas sollicitudin mauris ornare ornare imperdiet. Sed efficitur odio quis sem euismod fringilla. Maecenas dui urna, maximus vitae risus sed, congue rutrum justo. Nunc ante metus, viverra nec sodales eget, pretium ut nunc.
+Holbify is a music player withbasic features such as play/pause/stop a song, show song informations, go to next/previous song, change the volume of the program, create/open playlists...
 
 <a href="https://youtu.be/rlmdrxb_77I" target="_blank">View Demo</a>
 
@@ -15,11 +15,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at tincidunt ni
 ## Features
 
 ### Play a song / Change volume / Show song information
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at tincidunt nisl. Praesent vitae dictum lectus. Donec dignissim felis sollicitudin nibh feugiat tincidunt. Phasellus orci urna, pretium nec leo in, ultricies pretium odio. Maecenas sollicitudin mauris ornare ornare imperdiet. Sed efficitur odio quis sem euismod fringilla. Maecenas dui urna, maximus vitae risus sed, congue rutrum justo. Nunc ante metus, viverra nec sodales eget, pretium ut nunc.
+The user by clicking on the Play button will either open a dialog to choose a file, or start again a song already loaded. Loading another song will send the previous one in a "Recent playlist", permitting the user to use the Previous/Next buttons.
 <img class="fit-picture" src="screenshots/main_window_features.png" alt="Screenshot of the main window playing a song">
 
 ### Create playlists
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at tincidunt nisl. Praesent vitae dictum lectus. Donec dignissim felis sollicitudin nibh feugiat tincidunt. Phasellus orci urna, pretium nec leo in, ultricies pretium odio. Maecenas sollicitudin mauris ornare ornare imperdiet. Sed efficitur odio quis sem euismod fringilla. Maecenas dui urna, maximus vitae risus sed, congue rutrum justo. Nunc ante metus, viverra nec sodales eget, pretium ut nunc.
+It is possible to create playlists, stored locally, and open them at anytime. The playlist will replace the previous one being played.
 <img class="fit-picture" src="screenshots/create_playlist.png" alt="Screenshot of the create playlist window">
 
 
