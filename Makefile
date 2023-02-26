@@ -1,4 +1,4 @@
-compile:
+build:
 	rm -f holbify
 	g++ -o holbify main.cpp `pkg-config --cflags --libs gtk+-3.0 gstreamer-1.0`
 
