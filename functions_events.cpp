@@ -289,6 +289,7 @@ void on_add_button_clicked(Gtk::FileChooserDialog& dialog, Gtk::ListBox& listBox
                 if (std::find(playlist.begin(), playlist.end(), audioFile) == playlist.end()) {
                     playlist.push_back(audioFile);
                     auto label = Gtk::manage(new Gtk::Label(g_path_get_basename(audioFile.c_str())));
+                    label->set_data("filepath", new std::string(audioFile));
                     listBox.add(*label);
                 }
             }
@@ -296,6 +297,7 @@ void on_add_button_clicked(Gtk::FileChooserDialog& dialog, Gtk::ListBox& listBox
             if (std::find(playlist.begin(), playlist.end(), file) == playlist.end()) {
                 playlist.push_back(file);
                 auto label = Gtk::manage(new Gtk::Label(g_path_get_basename(file.c_str())));
+                label->set_data("filepath", new std::string(file));
                 listBox.add(*label);
             }
         }
@@ -309,10 +311,16 @@ void on_list_box_row_activated(Gtk::FileChooserDialog& dialog, Gtk::ListBox& lis
     auto child = row.get_child();
     auto label = dynamic_cast<Gtk::Label*>(child);
     std::string filename = label->get_text();
+    auto data = label->get_data("filepath");
+    auto filepath = *static_cast<std::string*>(data);
 
     // Remove the filename from the list box and playlist
-    listBox.remove(row);
-    playlist.erase(std::remove(playlist.begin(), playlist.end(), filename), playlist.end());
+    if (row.get_parent()) {
+        listBox.remove(row);
+    } else {
+        label->set_text("");
+    }
+    playlist.erase(std::remove(playlist.begin(), playlist.end(), filepath), playlist.end());
     dialog.show_all();
 }
 

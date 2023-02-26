@@ -58,6 +58,7 @@
         "valarray": "cpp",
         "iomanip": "cpp",
         "filesystem": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "unordered_set": "cpp"
     }
 }
