@@ -2,6 +2,8 @@
 body {
     font-family: Arial, sans-serif;
     font-size: 16px;
+    background-color:#333;
+    color: whitesmoke;
 }
 
 /* Style the header and navigation links */
