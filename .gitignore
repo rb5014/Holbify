@@ -1,3 +1,6 @@
 *.mp*
 *.log
 holbify
+.vscode
+Makefile
+test-musics
