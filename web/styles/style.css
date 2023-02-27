@@ -6,6 +6,10 @@ body {
     color: whitesmoke;
 }
 
+h1 {
+    text-align: center;
+}
+
 /* Style the header and navigation links */
 header {
     background-color: #333;
