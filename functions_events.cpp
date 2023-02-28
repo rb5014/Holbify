@@ -92,8 +92,6 @@ bool on_timeout_update_scale_bar(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 // Shows a file chooser dialog to open a file
 void file_chooser(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w) {
 
-    add_audio_filter(*w.fileChooserDialog);
-
     w.openFile->signal_clicked().connect([&]{
         w.fileChooserDialog->response(Gtk::RESPONSE_OK);
     });
