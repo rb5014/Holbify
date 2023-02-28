@@ -8,7 +8,7 @@
 
 Holbify is a music player withbasic features such as play/pause/stop a song, show song informations, go to next/previous song, change the volume of the program, create/open playlists...
 
-Check out my [landing page](https://github.com/Holbify/web/index.html) for more information about my project!
+Check out my [landing page](https://holbify.netlify.app/) for more information about my project!
 
 <a href="https://youtu.be/rlmdrxb_77I" target="_blank">
     <button>View Demo</button>
