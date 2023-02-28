@@ -11,6 +11,7 @@ h1 {
 }
 
 header {
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -22,7 +23,7 @@ header {
 }
 
 nav {
-    margin: auto;
+    align-self: center;
 }
   
 nav ul {
@@ -33,6 +34,7 @@ nav ul {
 }
 nav li {
     margin-right: 10px;
+    align-self: center;
 }
 nav a {
     color: white;
