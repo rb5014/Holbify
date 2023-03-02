@@ -24,7 +24,8 @@ widgets load_widgets(Glib::RefPtr<Gtk::Builder> builder)
     builder->get_widget("quitMenuItem", w.quitMenuItem);
     builder->get_widget("createPlaylistButton", w.createPlaylistButton);
     builder->get_widget("openPlaylistButton", w.openPlaylistButton);
-    builder->get_widget("fileChooserDialog", w.fileChooserDialog);
+    builder->get_widget("imageBox", w.imageBox);
+    builder->get_widget("fileChooserDialog", w.fileChooserDialog);    
     add_audio_filter(*w.fileChooserDialog);
     builder->get_widget("createPlaylistDialog", w.createPlaylistDialog);
     builder->get_widget("fileListBox", w.fileListBox);

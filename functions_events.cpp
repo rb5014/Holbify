@@ -1,36 +1,57 @@
-#include "functions.h"
+    #include "functions.h"
 
 
 // Interpret messages of the bus
 void on_message(Glib::RefPtr<Gst::Message> message, Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
     auto msgType = message->get_message_type();
-    //g_print("Received message of type %s\n", gst_message_type_get_name(msgType));
-    auto play_icon = Gtk::manage(new Gtk::Image("icons/play.png"));
-    auto pause_icon = Gtk::manage(new Gtk::Image("icons/pause.png"));
-    if (msgType == Gst::MESSAGE_STATE_CHANGED) {
-        GstState newState;
-        gst_message_parse_state_changed(message->gobj(), nullptr, &newState, nullptr);
-        if (newState == GST_STATE_READY || newState == GST_STATE_PAUSED) {
-            if (newState == GST_STATE_READY) {
-                reset_visuals(std::ref(w));
-            }
-            w.playPauseButton->set_image(*play_icon);
-            w.playPauseButton->set_tooltip_text("Play");
-        } else if (newState == GST_STATE_PLAYING) {
-            w.playPauseButton->set_image(*pause_icon);
-            w.playPauseButton->set_tooltip_text("Pause");
-        } 
-    } else if (msgType == Gst::MESSAGE_TAG) {
+    if (msgType == Gst::MESSAGE_TAG) {
+        if (flagTag == true) {
+            return;
+        }
         auto tag_message = Glib::RefPtr<Gst::MessageTag>::cast_static(message);
         if (tag_message) {
+            flagTag = true;
             Gst::TagList tag_list = tag_message->parse_tag_list();
-            gchar *title;
+            gchar* title = nullptr;
+            Glib::ustring titleArtist = "";
             if (gst_tag_list_get_string(tag_list.gobj(), GST_TAG_TITLE, &title)) {
-                w.mainWindow->set_title(Glib::ustring(title) + " - Music Player Holbify");
+                titleArtist = "\"" + Glib::ustring(title) + "\"";
+            }
+            gchar* artist = nullptr;
+            if (gst_tag_list_get_string(tag_list.gobj(), GST_TAG_ARTIST, &artist)) {
+                titleArtist += " by ";
+                titleArtist += Glib::ustring(artist);
+            }
+            if (titleArtist != "") {
+                w.mainWindow->set_title(titleArtist + " - Music Player Holbify");
             } else {
                 w.mainWindow->set_title(Gio::File::create_for_path(currentSong)->get_basename() + " - Music Player Holbify");
             }
+            if (title && artist) {
+                getLastfmCover(playbin, std::ref(w), title, artist, "", "cc48ca82a97f232c4208e1a4110ee528");
+                Gst::State state, pending_state;
+                // Wait for the state change to playing 
+                do {
+                    playbin->get_state(state, pending_state, 0);
+                } while (state != Gst::State::STATE_PLAYING);
+
+            }   
         }
+    } else if (msgType == Gst::MESSAGE_STATE_CHANGED) {
+            auto play_icon = Gtk::manage(new Gtk::Image("icons/play.png"));
+            auto pause_icon = Gtk::manage(new Gtk::Image("icons/pause.png"));
+            GstState newState;
+            gst_message_parse_state_changed(message->gobj(), nullptr, &newState, nullptr);
+            if (newState == GST_STATE_READY || newState == GST_STATE_PAUSED) {
+                if (newState == GST_STATE_READY) {
+                    reset_visuals(std::ref(w));
+                }
+                w.playPauseButton->set_image(*play_icon);
+                w.playPauseButton->set_tooltip_text("Play");
+            } else if (newState == GST_STATE_PLAYING) {
+                w.playPauseButton->set_image(*pause_icon);
+                w.playPauseButton->set_tooltip_text("Pause");
+            }
     } else if (msgType == Gst::MESSAGE_EOS) {
         on_next_button_clicked(playbin, w);
     }
@@ -105,7 +126,8 @@ void file_chooser(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w) {
 
 // Go to previous song or go to the end of the playlist
 void on_previous_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
-   
+    currentTrackName = "";
+    currentArtistName = "";
     if (!currentPlaylist.empty()) {
         if (currentSongIndex == 0) {
             // If the current song is the first song in the vector, wrap around to the last song
@@ -136,6 +158,8 @@ void on_previous_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) 
 
 // Go to next song or come back to beginning of the playlist
 void on_next_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
+    currentTrackName = "";
+    currentArtistName = "";
     if (!currentPlaylist.empty()) {
         if (currentSongIndex == currentPlaylist.size() -1) {
             // If the current song is the last song in the vector, wrap around to the first song
@@ -183,6 +207,8 @@ void on_play_pause_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w
 // Stops the currently playing song, resets the scale bar and time label to their initial values
 void on_stop_button_clicked(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w)
 {
+    currentTrackName = "";
+    currentArtistName = "";
     playbin->set_state(Gst::State::STATE_READY);
 
 }

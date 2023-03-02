@@ -82,11 +82,19 @@ void add_audio_filter(Gtk::FileChooserDialog& dialog) {
     dialog.add_filter(filter);
 }
 
-// Starts playing a song, set the playbin 
 void file_opener(Glib::ustring filename, Glib::RefPtr<Gst::PlayBin> playbin, widgets& w) {
+    flagTag = false;
+    gtk_image_set_from_file(w.imageBox->gobj(), "logo.png");
+    currentCoverPath = "";
     playbin->set_state(Gst::State::STATE_NULL);
     playbin->property_uri() = Glib::filename_to_uri(filename);
     playbin->set_state(Gst::State::STATE_PLAYING);
+    Gst::State state, pending_state;
+    // Wait for the state change to playing 
+    do {
+        playbin->get_state(state, pending_state, 0);
+    } while (state != Gst::State::STATE_PLAYING);
+
     currentSong = filename;
 }
 
@@ -148,3 +156,157 @@ void reset_visuals(widgets& w) {
     w.scaleBar->set_value(0);
     is_function_updating = false;
 }
+
+// Callback function for writing the downloaded data into a buffer
+static size_t my_curl_write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
+    size_t realsize = size * nmemb;
+    std::string *response = static_cast<std::string*>(userp);
+    response->append(static_cast<char*>(contents), realsize);
+    return realsize;
+}
+
+
+std::string url_encode(const std::string& str) {
+    CURL *curl = curl_easy_init();
+    char *output = curl_easy_escape(curl, str.c_str(), str.length());
+    std::string encoded(output);
+    curl_free(output);
+    curl_easy_cleanup(curl);
+    return encoded;
+}
+
+// Builds the Last.fm API request URL with the provided parameters
+std::string buildLastfmRequestUrl(const std::string& track, const std::string& artist, const std::string& album, const std::string& api_key) {
+    std::string url = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=cc48ca82a97f232c4208e1a4110ee528";
+    if (!track.empty()) {
+        url += "&track=" + url_encode(track);
+    }
+    if (!artist.empty()) {
+        url += "&artist=" + url_encode(artist);
+    }
+    url += "&format=json";
+    return url;
+}
+
+// Makes a HTTP GET request to the specified URL and returns the response body
+std::string makeHttpGetRequest(const std::string& url) {
+    CURL *curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+        struct curl_slist *chunk = NULL;
+        chunk = curl_slist_append(chunk, "Accept: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+
+        std::string response;
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, my_curl_write_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+
+        CURLcode res = curl_easy_perform(curl);
+        curl_slist_free_all(chunk);
+        curl_easy_cleanup(curl);
+
+        if (res == CURLE_OK) {
+            return response;
+        }
+    }
+
+    return "";
+}
+
+// Parses the Last.fm API response and returns the cover image URL and the album name
+std::pair<std::string, std::string> parseLastfmCoverUrl(const std::string& response) {
+    Json::Value root;
+    Json::Reader reader;
+    bool parsingSuccessful = reader.parse(response, root);
+    if (parsingSuccessful) {
+        Json::Value track = root["track"];
+        if (!track.empty()) {
+            Json::Value album = track["album"];
+            if (!album.empty()) {
+                std::string albumName = album["title"].asString();
+                Json::Value image = album["image"].isArray() ? album["image"][2]["#text"] : album["image"]["#text"];
+                if (!image.empty()) {
+                    std::string imageUrl = image.asString();
+                    return std::make_pair(imageUrl, albumName);
+                }
+            }
+        }
+    }
+    return std::make_pair("", "");
+}
+
+void downloadImage(const char* url, const char* filename) {
+    if (!g_file_test("CoverArts", G_FILE_TEST_IS_DIR)) {
+        mkdir("CoverArts", 0777);
+    }
+
+    GFile* file = g_file_new_for_path(filename);
+
+    if (!g_file_test(filename, G_FILE_TEST_EXISTS)) {
+        SoupSession* session = soup_session_new();
+        SoupMessage* message = soup_message_new("GET", url);
+
+        soup_session_send_message(session, message);
+        g_object_unref(session);
+
+        GError* error = NULL;
+        GFileOutputStream* stream = g_file_create(file, G_FILE_CREATE_REPLACE_DESTINATION, NULL, &error);
+
+        if (error != NULL) {
+            g_print("Error creating file: %s\n", error->message);
+            g_clear_error(&error);
+            return;
+        }
+
+        gsize bytes_written;
+        g_output_stream_write_all(G_OUTPUT_STREAM(stream), message->response_body->data, message->response_body->length, &bytes_written, NULL, &error);
+
+        if (error != NULL) {
+            g_print("Error writing to file: %s\n", error->message);
+            g_clear_error(&error);
+            g_object_unref(stream);
+            return;
+        }
+
+        g_object_unref(stream);
+    }
+
+    return;
+}
+
+std::string getLastfmCover(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w, const std::string& track, const std::string& artist, const std::string& album, const std::string& api_key) {
+
+    // Build the request URL
+    std::string url = buildLastfmRequestUrl(track, artist, album, api_key);
+    // Send the HTTP request to Last.fm and parse the response
+    std::string response = makeHttpGetRequest(url);
+
+    // Extract the cover image URL from the response
+    std::string coverUrl, albumName;
+    std::tie(coverUrl, albumName) = parseLastfmCoverUrl(response);
+    if ((coverUrl == "") || (albumName == "")) {
+        playbin->set_state(Gst::State::STATE_PLAYING);
+        return "";
+    }
+    // Create the filepath
+    std::replace(albumName.begin(), albumName.end(), ' ', '_');
+    std::string fullpath = "CoverArts/" + albumName + ".jpg";
+    // Download the cover image and create a GdkPixbuf object from the data
+    downloadImage(coverUrl.c_str(), fullpath.c_str());
+    // Return the filepath
+    currentCoverPath = fullpath;
+    gtk_image_set_from_file(w.imageBox->gobj(), currentCoverPath.c_str());
+    playbin->set_state(Gst::State::STATE_PLAYING);
+    return fullpath;
+}
+
+/*void getLastfmCoverInBackground(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w, const std::string& track, const std::string& artist, const std::string& album, const std::string& api_key) {
+  // create a new thread for the download function
+  std::thread getCoverThread(getLastfmCover, playbin, std::ref(w), track, artist, album, api_key);
+    playbin->set_state(Gst::State::STATE_PAUSED);
+
+  // detach the thread so that it runs in the background
+  getCoverThread.detach();
+}*/

@@ -15,6 +15,10 @@
 #include <fstream>
 #include <dirent.h>
 #include <unordered_set>
+#include <curl/curl.h>
+#include <json/json.h>
+#include <libsoup/soup.h>
+#include <thread>
 
 
 // Global variables
@@ -22,7 +26,11 @@ extern bool is_function_updating;
 extern std::deque <Glib::ustring> playedSongs;
 extern std::vector <std::string> currentPlaylist;
 extern Glib::ustring currentSong;
+extern std::string currentTrackName;
+extern std::string currentArtistName;
+extern std::string currentCoverPath;
 extern long unsigned int currentSongIndex;
+extern bool flagTag;
 
 // Structure holding the widgets from GLADE
 struct widgets {
@@ -31,6 +39,7 @@ struct widgets {
     Gtk::MenuItem* quitMenuItem;
     Gtk::MenuItem* createPlaylistButton;
     Gtk::MenuItem* openPlaylistButton;
+    Gtk::Image* imageBox;
     Gtk::FileChooserDialog* fileChooserDialog;
     Gtk::FileChooserDialog* createPlaylistDialog;
     Gtk::ListBox* fileListBox;
@@ -82,4 +91,5 @@ void file_opener(Glib::ustring filename, Glib::RefPtr<Gst::PlayBin> playbin, wid
 std::vector<std::string> load_playlist(const std::string& filename);
 void save_playlist(Gtk::FileChooserDialog& dialog, const std::vector<std::string>& playlist, const std::string& filename);
 void reset_visuals(widgets& w);
+std::string getLastfmCover(Glib::RefPtr<Gst::PlayBin> playbin, widgets &w, const std::string& track, const std::string& artist, const std::string& album, const std::string& api_key);
 #endif

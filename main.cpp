@@ -3,8 +3,12 @@
 bool is_function_updating = false;
 std::deque <Glib::ustring> playedSongs;
 std::vector <std::string> currentPlaylist;
+std::string currentCoverPath = "";
+std::string currentTrackName = "";
+std::string currentArtistName = "";
 Glib::ustring currentSong;
 long unsigned int currentSongIndex = 0;
+bool flagTag = false;
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +17,6 @@ int main(int argc, char *argv[])
 
     // Create the playbin
     Glib::RefPtr<Gst::PlayBin> playbin = create_playbin();
-
     // Load the Glade XML file
     Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create_from_file("GUI.glade");
 
