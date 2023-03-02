@@ -30,16 +30,6 @@ void on_message(Glib::RefPtr<Gst::Message> message, Glib::RefPtr<Gst::PlayBin> p
             } else {
                 w.mainWindow->set_title(Gio::File::create_for_path(currentSong)->get_basename() + " - Music Player Holbify");
             }
-
-            // Get the cover art tag
-            GstSample *sample;
-            if (gst_tag_list_get_sample(tag_list.gobj(), GST_TAG_IMAGE, &sample)) {
-                g_print("Got the artwork!\n");
-                // use the buffer to display the image
-            } else {
-                g_print("NO ARTWORK!\n");
-            }
-
         }
     } else if (msgType == Gst::MESSAGE_EOS) {
         on_next_button_clicked(playbin, w);

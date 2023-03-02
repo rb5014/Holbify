@@ -55,6 +55,9 @@
         </child>
       </object>
     </child>
+    <style>
+      <class name="topLevel"/>
+    </style>
   </object>
   <object class="GtkFileChooserDialog" id="fileChooserDialog">
     <property name="can_focus">False</property>
@@ -106,6 +109,9 @@
         </child>
       </object>
     </child>
+    <style>
+      <class name="topLevel"/>
+    </style>
   </object>
   <object class="GtkFileFilter" id="filefilter1"/>
   <object class="GtkWindow" id="mainWindow">
@@ -123,8 +129,108 @@
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
+        <property name="baseline_position">top</property>
         <child>
-          <object class="GtkGrid">
+          <object class="GtkMenuBar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Media</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="openMenuItem">
+                        <property name="label" translatable="yes">Open a file</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_stock">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="createPlaylistButton">
+                        <property name="label" translatable="yes">Create a playlist</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_stock">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="openPlaylistButton">
+                        <property name="label" translatable="yes">Open a playlist</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_stock">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="quitMenuItem">
+                        <property name="label">gtk-quit</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="separateBox">
+            <property name="name">separateBox</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkImage" id="imageBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="pixbuf">logo.png</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="gridMain">
+            <property name="width_request">-1</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="valign">end</property>
@@ -134,9 +240,13 @@
             <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkButton" id="playPauseButton">
+                <property name="width_request">32</property>
+                <property name="height_request">32</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can_focus">False</property>
+                <property name="has_focus">True</property>
+                <property name="is_focus">True</property>
+                <property name="receives_default">False</property>
                 <property name="margin_left">5</property>
                 <property name="margin_right">5</property>
                 <property name="margin_top">10</property>
@@ -144,7 +254,7 @@
                 <property name="always_show_image">True</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -158,7 +268,7 @@
                 <property name="always_show_image">True</property>
               </object>
               <packing>
-                <property name="left_attach">4</property>
+                <property name="left_attach">3</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -243,12 +353,14 @@ audio-volume-medium-symbolic</property>
                 <property name="always_show_image">True</property>
               </object>
               <packing>
-                <property name="left_attach">5</property>
+                <property name="left_attach">4</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkButton" id="previousButton">
+                <property name="width_request">20</property>
+                <property name="height_request">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -257,7 +369,7 @@ audio-volume-medium-symbolic</property>
                 <property name="always_show_image">True</property>
               </object>
               <packing>
-                <property name="left_attach">3</property>
+                <property name="left_attach">2</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -278,96 +390,16 @@ audio-volume-medium-symbolic</property>
             </child>
           </object>
           <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <property name="homogeneous">True</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child type="center">
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkMenuBar">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkMenuItem">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Media</property>
-                <child type="submenu">
-                  <object class="GtkMenu">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkImageMenuItem" id="openMenuItem">
-                        <property name="label" translatable="yes">Open File</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_stock">False</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="createPlaylistButton">
-                        <property name="label" translatable="yes">Create a playlist</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_stock">False</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="openPlaylistButton">
-                        <property name="label" translatable="yes">Open a playlist</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_stock">False</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="quitMenuItem">
-                        <property name="label">gtk-quit</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="pack_type">end</property>
             <property name="position">2</property>
           </packing>
         </child>
       </object>
     </child>
+    <style>
+      <class name="topLevel"/>
+    </style>
   </object>
 </interface>

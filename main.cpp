@@ -21,6 +21,22 @@ int main(int argc, char *argv[])
     widgets w = load_widgets(builder);
     load_icons(w);
     
+    // Create a CSS provider
+    auto cssProvider = Gtk::CssProvider::create();
+
+    // Load the style.css file
+    try {
+        cssProvider->load_from_path("style.css");
+    } catch (const Glib::Error& ex) {
+        g_print("Error loading CSS file: %s\n", ex.what().c_str());
+        return 1;
+    }
+
+    // Set the CSS provider as the default style provider for all widgets
+    Gtk::StyleContext::add_provider_for_screen(
+        Gdk::Screen::get_default(),
+        cssProvider,
+        GTK_STYLE_PROVIDER_PRIORITY_USER);
     // Connect the signals from the widgets to the dedicated functions
     connect_signals(w, playbin, app);
     w.mainWindow->show_all();
